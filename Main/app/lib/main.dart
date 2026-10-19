@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
       )
     );
   }
-
+//Class for the cards that are displayed in the list view. Each card can have a different color and a shadow effect.
   Widget buildCard(Color color) {
     return Container(
       margin: const EdgeInsets.all(16),
