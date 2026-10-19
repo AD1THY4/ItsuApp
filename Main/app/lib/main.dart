@@ -88,51 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          Container(
-            margin: const EdgeInsets.all(16),
-            height: 500,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: Colors.red,
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 12,
-                  offset: Offset(0, 4),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(16), 
-            height: 500,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: Colors.green,
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 12,
-                  offset: Offset(0, 4),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(16),
-            height: 500,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: Colors.blue,
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 12,
-                  offset: Offset(0, 4),
-                ),
-              ],
-            ),
-          ),
+          buildCard(Colors.purple),
+          buildCard(Colors.black),
+          buildCard(Colors.green),
         ],
       ),
     bottomNavigationBar: Container(
@@ -173,4 +131,23 @@ class _MyHomePageState extends State<MyHomePage> {
       )
     );
   }
+
+  Widget buildCard(Color color) {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      height: 500,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        color: color,
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 12,
+            offset: Offset(0, 10),
+          ),
+        ],
+      ),
+    );
+  }
 }
+
