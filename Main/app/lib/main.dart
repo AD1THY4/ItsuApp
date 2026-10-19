@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'ItsTime'),
     );
   }
 }
@@ -107,9 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     bottomNavigationBar: Container(
         margin: const EdgeInsets.only(
-          left: 5,
-          right: 5,
-          bottom: 5,
+          left: 10,
+          right: 10,
+          bottom: 10,
         ),
         decoration: BoxDecoration(
           boxShadow: const [
@@ -152,8 +152,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildCard(Color color, double borderRadius, double height) {
     return Container(
       margin: const EdgeInsets.only(
-        left: 5,
-        right: 5,
+        left: 10,
+        right: 10,
       ),
       height: height,
       decoration: BoxDecoration(
