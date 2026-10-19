@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -76,28 +76,42 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+      appBar: AppBar( //top app bar with a menu button and a notifications button. The app bar has a transparent background and a height of 80.
         title: Text(widget.title),
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 80,
+
+        leading: IconButton(
+          icon: const Icon(Icons.menu, color: Colors.black, size: 28,),
+          onPressed: () {
+            // Handle menu button press
+          },
+        ),
+
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications_outlined, color: Colors.black, size: 28,),
+            onPressed: () {
+              // Handle notifications button press
+            },
+          ),
+        ],
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          buildCard(Colors.purple),
-          buildCard(Colors.black),
-          buildCard(Colors.green),
+          buildCard(Colors.white, 15, 500),//This is the first card that is displayed in the list view. It has a black color and a border radius of 15.
+          buildCard(Colors.white, 0, 200),
+          buildCard(Colors.white, 0, 300),
         ],
       ),
     bottomNavigationBar: Container(
-        margin: const EdgeInsets.all(16),
+        margin: const EdgeInsets.only(
+          left: 5,
+          right: 5,
+          bottom: 5,
+        ),
         decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(30),
           boxShadow: const [
             BoxShadow(
               color: Colors.black26,
@@ -107,10 +121,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(15),
+            bottomRight: Radius.circular(15),
+          ),
           child: BottomNavigationBar(
-            backgroundColor: Colors.black,
-            selectedItemColor: Colors.white,
+            backgroundColor: Colors.white,
+            selectedItemColor: Colors.black,
             unselectedItemColor: Colors.grey,
             items: const [
               BottomNavigationBarItem(
@@ -132,12 +149,24 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 //Class for the cards that are displayed in the list view. Each card can have a different color and a shadow effect.
-  Widget buildCard(Color color) {
+  Widget buildCard(Color color, double borderRadius, double height) {
     return Container(
-      margin: const EdgeInsets.all(16),
-      height: 500,
+      margin: const EdgeInsets.only(
+        left: 5,
+        right: 5,
+      ),
+      height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+         borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(borderRadius),
+            topRight: Radius.circular(borderRadius),
+          ),
+           border: Border(
+            bottom: BorderSide(
+            color: Colors.black26,
+            width: 3,
+            ),
+          ),
         color: color,
         boxShadow: const [
           BoxShadow(
