@@ -79,9 +79,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar( //top app bar with a menu button and a notifications button. The app bar has a transparent background and a height of 80.
-        title: Text(widget.title),
+        title: Text(widget.title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
         backgroundColor: Colors.transparent,
-        toolbarHeight: 80,
+        
+        centerTitle: true,
+        toolbarHeight: 50,
 
         leading: IconButton(
           icon: const Icon(Icons.menu, color: Colors.black, size: 28,),
