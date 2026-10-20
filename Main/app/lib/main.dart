@@ -100,16 +100,30 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          buildCard(Colors.white, 15, 500),//This is the first card that is displayed in the list view. It has a black color and a border radius of 15.
-          buildCard(Colors.white, 0, 200),
-          buildCard(Colors.white, 0, 300),
+          buildCard(Colors.white, 15, 270, 
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                  const SizedBox(width: 10),
+                  Expanded(child:stockCards(title: 'Low Stock', icon: Icons.warning_amber_rounded, itemsDue: 5, color: Colors.blue.shade900),),
+                  const SizedBox(width: 10),
+                  Expanded(child:stockCards(title: 'Expiring Soon', icon: Icons.timer_outlined, itemsDue: 3, color: Colors.blue.shade500),),
+                  const SizedBox(width: 10),
+                  Expanded(child:stockCards(title: 'Out of Stock', icon: Icons.remove_shopping_cart_outlined, itemsDue: 2, color: Colors.blue.shade100),),
+                  const SizedBox(width: 10),
+                  ],
+                ), 'Stats Cards'
+            ),
+          
+          buildCard(Colors.white, 0, 200, const Text(''), 'Summary'),
+          buildCard(Colors.white, 0, 500, const Text(''), 'Inventory'),
         ],
       ),
     bottomNavigationBar: Container(
         margin: const EdgeInsets.only(
           left: 10,
           right: 10,
-          bottom: 10,
+          bottom: 15,
         ),
         decoration: BoxDecoration(
           boxShadow: const [
@@ -149,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 //Class for the cards that are displayed in the list view. Each card can have a different color and a shadow effect.
-  Widget buildCard(Color color, double borderRadius, double height) {
+  Widget buildCard(Color color, double borderRadius, double height, Widget child, String title) {
     return Container(
       margin: const EdgeInsets.only(
         left: 10,
@@ -176,6 +190,82 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Text(
+              title,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          child
+        ],
+      ),
+    );
+  }
+
+// widgeget for the stats cards.
+  Widget stockCards({required String title, required IconData icon, required int itemsDue, required Color color,}) 
+  {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 12,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: 48,
+            color: Colors.black, // Icon
+          ),
+
+          const SizedBox(height: 12),
+          Text( //Title of the card
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          Container(
+            width: 70, //circle with number
+            height: 70,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.white,
+                width: 2,
+              ),
+            ),
+          
+            child: Center(
+              child: Text(
+                '$itemsDue', //number of items due
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            )
+          ),
+          const SizedBox(height: 12),
+        ]
+      )
     );
   }
 }
